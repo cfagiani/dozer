@@ -431,4 +431,14 @@ public final class ReflectionUtils {
     return null;
   }
 
+  public static Method getSetter(Class<?> clazz, String fieldName) {
+    String methodName = "set" + StringUtils.capitalize(fieldName);
+    for (Method method : clazz.getMethods()) {
+      if (method.getName().equals(methodName) && method.getParameterTypes().length == 1) {
+        return method;
+      }
+    }
+        return null;
+  }
+
 }
